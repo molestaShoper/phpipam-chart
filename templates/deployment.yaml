@@ -140,8 +140,11 @@ spec:
             - name: {{ .Chart.Name }}-mysql
               mountPath: /var/lib/mysql
           env:
-            - name: "MYSQL_RANDOM_ROOT_PASSWORD"
-              value: "yes"
+            - name: "MYSQL_ROOT_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-{{ .Chart.Name }}-secrets
+                  key: {{ .Chart.Name }}-mysql-root-pass
             - name: "MYSQL_LOG_CONSOLE"
               value: "true"
             - name: "MYSQL_DATABASE"
