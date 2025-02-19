@@ -140,15 +140,15 @@ spec:
             - name: {{ .Chart.Name }}-mysql
               mountPath: /var/lib/mysql
           env:
-            - name: "MARIADB_RANDOM_ROOT_PASSWORD"
+            - name: "MYSQL_RANDOM_ROOT_PASSWORD"
               value: "yes"
             - name: "MYSQL_LOG_CONSOLE"
               value: "true"
-            - name: "MARIADB_DATABASE"
+            - name: "MYSQL_DATABASE"
               value: {{ .Values.global.database.name }}
-            - name: "MARIADB_USER"
+            - name: "MYSQL_USER"
               value: {{ .Values.global.database.user }}
-            - name: "MARIADB_PASSWORD"
+            - name: "MYSQL_PASSWORD"
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-{{ .Chart.Name }}-secrets

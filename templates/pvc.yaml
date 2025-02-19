@@ -11,5 +11,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.database.persistence.size }}
-  storageClassName: {{ .Values.database.persistence.storageClassName }}
+{{- if .Values.database.persistence.storageClassName }}
+  storageClassName: "{{ .Values.database.persistence.storageClassName }}"
+{{- end }}
 {{- end }}

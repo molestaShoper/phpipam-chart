@@ -59,7 +59,7 @@ database:
   persistence:
     enabled: true
     size: 15Gi
-    storageClassName: ""
+    # storageClassName: ""
   resources:
     # resources are not mapped yet and therefor not working
     requests:
