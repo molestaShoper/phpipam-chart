@@ -1,39 +1,38 @@
-apiVersion: v1
+{{- if .Values.database.installed }}
+---
 kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.database.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Chart.Name }}
+    component: mysql
+spec:
+  ports:
+    - name: mysql
+      protocol: TCP
+      port: {{ .Values.database.service.port }}
+      targetPort: {{ .Values.database.service.port }}
+  selector:
+    app: {{ .Chart.Name }}
+    component: mysql
+{{- end }}
+---
+kind: Service
+apiVersion: v1
 metadata:
   name: {{ .Values.phpipam.name }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app: {{ .Values.phpipam.name }}
-    chart: {{ template "ipam.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: {{ .Chart.Name }}
+    component: web
 spec:
-  type: {{ .Values.phpipam.service.type }}
   ports:
-    - port: {{ .Values.phpipam.service.port }}
-      targetPort: 80
+    - name: http
       protocol: TCP
-      name: http
+      port: {{ .Values.phpipam.service.port }}
+      targetPort: {{ .Values.phpipam.service.port }}
   selector:
-    app: {{ template "ipam.fullname" .  }}
-    release: {{ .Release.Name }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Values.phpipamMysql.name }}
-  labels:
-    app: {{ .Values.phpipamMysql.name }}
-    chart: {{ template "ipam.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  type: {{ .Values.phpipamMysql.service.type }}
-  ports:
-    - port: {{ .Values.phpipamMysql.service.port }}
-      targetPort: 3306
-      protocol: TCP
-      name: mysql
-  selector:
-    app: {{ template "ipam.fullname" .  }}
-    release: {{ .Release.Name }}
+    app: {{ .Chart.Name }}
+    component: web

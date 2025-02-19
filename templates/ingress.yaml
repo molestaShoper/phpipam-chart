@@ -1,41 +1,28 @@
-{{- if .Values.phpipam.ingress.enabled -}}
-apiVersion: networking.k8s.io/v1
+---
 kind: Ingress
+apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ .Values.phpipam.name }}
-  {{- with .Values.phpipam.ingress.annotations }}
+  name: {{ .Chart.Name }}-web
+  namespace: {{ .Release.Namespace }}
   annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    {{ if .Values.ingress.annotations }}
+    {{ toYaml .Values.ingress.annotations | nindent 4 }}
+    {{ end }}
 spec:
-  {{- with .Values.phpipam.ingress.className }}
-  ingressClassName: {{ . }}
-  {{- end }}
-  {{- if .Values.phpipam.ingress.tls }}
   tls:
-    {{- range .Values.phpipam.ingress.tls }}
     - hosts:
-        {{- range .hosts }}
-        - {{ . | quote }}
-        {{- end }}
-      secretName: {{ .secretName }}
-    {{- end }}
-  {{- end }}
+        - {{ .Values.global.domain }}
+      secretName: "{{ .Release.Name }}-{{ .Chart.Name }}-cert"
+  ingressClassName: {{ .Values.ingress.className }}
   rules:
-    {{- range .Values.phpipam.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ .Values.global.domain }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            {{- with .pathType }}
-            pathType: {{ . }}
-            {{- end }}
+          - path: /
+            pathType: Prefix
             backend:
               service:
-                name: phpipam-web
+                name: {{ .Values.phpipam.name }}
                 port:
-                  number: 80
-          {{- end }}
-    {{- end }}
-{{- end }}
+                  number: {{ .Values.phpipam.service.port }}
