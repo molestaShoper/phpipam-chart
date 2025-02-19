@@ -1,0 +1,38 @@
+{{- if .Values.phpipamMysql.persistentVolume.enabled -}}
+{{- if not .Values.phpipamMysql.persistentVolume.existingClaim -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  {{- if .Values.phpipamMysql.persistentVolume.annotations }}
+  annotations:
+{{ toYaml .Values.phpipamMysql.persistentVolume.annotations | indent 4 }}
+  {{- end }}
+  labels:
+    app: {{ template "ipam.name" . }}
+    chart: {{ template "ipam.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  name: {{ template "ipam.fullname" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  accessModes:
+{{ toYaml .Values.phpipamMysql.persistentVolume.accessModes | indent 4 }}
+{{- if .Values.phpipamMysql.persistentVolume.storageClass }}
+{{- if (eq "-" .Values.phpipamMysql.persistentVolume.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.phpipamMysql.persistentVolume.storageClass }}"
+{{- end }}
+{{- end }}
+{{- if .Values.phpipamMysql.persistentVolume.volumeBindingMode }}
+  volumeBindingMode: "{{ .Values.phpipamMysql.persistentVolume.volumeBindingMode }}"
+{{- end }}
+  resources:
+    requests:
+      storage: "{{ .Values.phpipamMysql.persistentVolume.size }}"
+{{- if .Values.phpipamMysql.persistentVolume.selector }}
+  selector:
+  {{- toYaml .Values.phpipamMysql.persistentVolume.selector | nindent 4 }}
+{{- end -}}
+{{- end -}}
+{{- end -}}

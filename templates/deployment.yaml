@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "ipam.fullname" . }}
+  labels:
+    app: {{ template "ipam.fullname" . }}
+    chart: {{ template "ipam.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "ipam.fullname" .  }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "ipam.fullname" . }}
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: {{ template "ipam.fullname" . }}
+          persistentVolumeClaim:
+            claimName: {{ template "ipam.fullname" . }}
+        {{- if .Values.additionalVolumes }}
+          {{- toYaml .Values.additionalVolumes | nindent 8 }}
+        {{- end }}
+      containers:
+        - name: phpipam-web
+          image: "{{ .Values.phpipam.image.repository }}:{{ .Values.phpipam.image.tag }}"
+          imagePullPolicy: {{ .Values.phpipam.image.pullPolicy }}
+          env:
+            {{- toYaml .Values.phpipam.env | nindent 12 }}
+          {{- if .Values.phpipam.volumeMounts }}
+          volumeMounts:
+            {{- toYaml .Values.phpipam.volumeMounts | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.phpipam.resources | nindent 12 }}
+        - name: phpipam-mysql
+          image: "{{ .Values.phpipamMysql.image.repository }}:{{ .Values.phpipamMysql.image.tag }}"
+          imagePullPolicy: {{ .Values.phpipamMysql.image.pullPolicy }}
+          env:
+            {{- toYaml .Values.phpipamMysql.env | nindent 12 }}
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+          volumeMounts:
+            - name: {{ template "ipam.fullname" . }}
+            {{- toYaml .Values.phpipamMysql.volumeMounts | nindent 14 }}
+          resources:
+            {{- toYaml .Values.phpipamMysql.resources | nindent 12 }}
+        - name: phpipam-cron
+          image: "{{ .Values.phpipamCron.image.repository }}:{{ .Values.phpipamCron.image.tag }}"
+          imagePullPolicy: {{ .Values.phpipamCron.image.pullPolicy }}
+          env:
+            {{- toYaml .Values.phpipamCron.env | nindent 12 }}
+          {{- if .Values.phpipamCron.volumeMounts }}
+          volumeMounts:
+            {{- toYaml .Values.phpipamCron.volumeMounts | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.phpipamCron.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{ toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.phpipam.name }}
+  labels:
+    app: {{ .Values.phpipam.name }}
+    chart: {{ template "ipam.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.phpipam.service.type }}
+  ports:
+    - port: {{ .Values.phpipam.service.port }}
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "ipam.fullname" .  }}
+    release: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.phpipamMysql.name }}
+  labels:
+    app: {{ .Values.phpipamMysql.name }}
+    chart: {{ template "ipam.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.phpipamMysql.service.type }}
+  ports:
+    - port: {{ .Values.phpipamMysql.service.port }}
+      targetPort: 3306
+      protocol: TCP
+      name: mysql
+  selector:
+    app: {{ template "ipam.fullname" .  }}
+    release: {{ .Release.Name }}
