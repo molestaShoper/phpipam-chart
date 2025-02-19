@@ -7,4 +7,3 @@ sources:
 - https://github.com/molestaShoper/phpipam-chart
 version: 1.0.0
 type: application
-kubeVersion: ^1.30.0-0
