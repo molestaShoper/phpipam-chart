@@ -27,7 +27,6 @@ phpipam:
     # - secretName: phpipam-ssl-certificate
     #   hosts:
      #     - phpipam.example.local
-
   resources: {}
     # requests:
     #   memory: 128Mi
@@ -35,14 +34,20 @@ phpipam:
     # limits:
     #   memory: 256Mi
     #   cpu: 0.5
-
   env:
     - name: TZ
       value: Europe/Warsaw
+    - name: IPAM_DISABLE_INSTALLER
+      value: "true"
     - name: IPAM_DATABASE_HOST
       value: phpipam-mysql
     - name: IPAM_DATABASE_WEBHOST
       value: "%"
+    - name: IPAM_DATABASE_USER
+      valueFrom:
+        secretKeyRef:
+          key: mysql-username
+          name: phpipam-mysql-secret
     - name: IPAM_DATABASE_PASS
       valueFrom:
         secretKeyRef:
