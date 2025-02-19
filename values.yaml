@@ -86,9 +86,9 @@ phpipamMysql:
     pullPolicy: IfNotPresent
   persistentVolume:
     enabled: true
+    # storageClass: ""
     accessModes:
       - ReadWriteOnce
-    storageClass: local-path
     size: 4Gi
   volumeMounts:
     mountPath: /var/lib/mysql

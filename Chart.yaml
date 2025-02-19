@@ -4,10 +4,7 @@ description: phpipam server
 name: phpipam
 home: https://phpipam.net
 sources: 
-- https://github.com/nullconfig/phpipam
+- https://github.com/molestaShoper/phpipam-chart
 version: 1.0.1
-maintainers:
-  - name: bgalloway
-    email: nullconfig@gmail.com
 type: application
-kubeVersion: ^1.19.0-0
+kubeVersion: ^1.30.0-0

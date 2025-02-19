@@ -18,11 +18,7 @@ spec:
   accessModes:
 {{ toYaml .Values.phpipamMysql.persistentVolume.accessModes | indent 4 }}
 {{- if .Values.phpipamMysql.persistentVolume.storageClass }}
-{{- if (eq "-" .Values.phpipamMysql.persistentVolume.storageClass) }}
-  storageClassName: ""
-{{- else }}
   storageClassName: "{{ .Values.phpipamMysql.persistentVolume.storageClass }}"
-{{- end }}
 {{- end }}
 {{- if .Values.phpipamMysql.persistentVolume.volumeBindingMode }}
   volumeBindingMode: "{{ .Values.phpipamMysql.persistentVolume.volumeBindingMode }}"

@@ -6,19 +6,13 @@ phpipam server
 
 **Homepage:** <https://phpipam.net>
 
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| bgalloway | <nullconfig@gmail.com> |  |
-
 ## Source Code
 
-* <https://github.com/nullconfig/phpipam>
+* <https://github.com/molestaShoper/phpipam-chart>
 
 ## Requirements
 
-Kubernetes: `^1.19.0-0`
+Kubernetes: `^1.30.0-0`
 
 ## Values
 
@@ -85,7 +79,6 @@ Kubernetes: `^1.19.0-0`
 | phpipamMysql.persistentVolume.accessModes[0] | string | `"ReadWriteOnce"` |  |
 | phpipamMysql.persistentVolume.enabled | bool | `true` |  |
 | phpipamMysql.persistentVolume.size | string | `"4Gi"` |  |
-| phpipamMysql.persistentVolume.storageClass | string | `"local-path"` |  |
 | phpipamMysql.resources | object | `{}` |  |
 | phpipamMysql.service.port | int | `3306` |  |
 | phpipamMysql.service.type | string | `"ClusterIP"` |  |
