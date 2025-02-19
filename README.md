@@ -10,10 +10,6 @@ phpipam is an open-source web IP address management application (IPAM)
 
 * <https://github.com/molestaShoper/phpipam-chart>
 
-## Requirements
-
-Kubernetes: `^1.30.0-0`
-
 ## Values
 
 | Key | Type | Default | Description |
@@ -25,13 +21,18 @@ Kubernetes: `^1.30.0-0`
 | nodeSelector | object | `{}` |  |
 | phpipam.env[0].name | string | `"TZ"` |  |
 | phpipam.env[0].value | string | `"Europe/Warsaw"` |  |
-| phpipam.env[1].name | string | `"IPAM_DATABASE_HOST"` |  |
-| phpipam.env[1].value | string | `"phpipam-mysql"` |  |
-| phpipam.env[2].name | string | `"IPAM_DATABASE_WEBHOST"` |  |
-| phpipam.env[2].value | string | `"%"` |  |
-| phpipam.env[3].name | string | `"IPAM_DATABASE_PASS"` |  |
-| phpipam.env[3].valueFrom.secretKeyRef.key | string | `"mysql-root-password"` |  |
-| phpipam.env[3].valueFrom.secretKeyRef.name | string | `"phpipam-mysql-secret"` |  |
+| phpipam.env[1].name | string | `"IPAM_DISABLE_INSTALLER"` |  |
+| phpipam.env[1].value | string | `"true"` |  |
+| phpipam.env[2].name | string | `"IPAM_DATABASE_HOST"` |  |
+| phpipam.env[2].value | string | `"phpipam-mysql"` |  |
+| phpipam.env[3].name | string | `"IPAM_DATABASE_WEBHOST"` |  |
+| phpipam.env[3].value | string | `"%"` |  |
+| phpipam.env[4].name | string | `"IPAM_DATABASE_USER"` |  |
+| phpipam.env[4].valueFrom.secretKeyRef.key | string | `"mysql-username"` |  |
+| phpipam.env[4].valueFrom.secretKeyRef.name | string | `"phpipam-mysql-secret"` |  |
+| phpipam.env[5].name | string | `"IPAM_DATABASE_PASS"` |  |
+| phpipam.env[5].valueFrom.secretKeyRef.key | string | `"mysql-root-password"` |  |
+| phpipam.env[5].valueFrom.secretKeyRef.name | string | `"phpipam-mysql-secret"` |  |
 | phpipam.image.pullPolicy | string | `"IfNotPresent"` |  |
 | phpipam.image.repository | string | `"phpipam/phpipam-www"` |  |
 | phpipam.image.tag | string | `"v1.7.3"` |  |
