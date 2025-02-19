@@ -38,7 +38,7 @@ phpipam:
     - name: TZ
       value: Europe/Warsaw
     - name: IPAM_DISABLE_INSTALLER
-      value: "true"
+      value: "false"
     - name: IPAM_DATABASE_HOST
       value: phpipam-mysql
     - name: IPAM_DATABASE_WEBHOST
