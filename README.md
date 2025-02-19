@@ -1,8 +1,8 @@
 # phpipam
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.5](https://img.shields.io/badge/AppVersion-1.5-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.7.3](https://img.shields.io/badge/AppVersion-1.7.3-informational?style=flat-square)
 
-phpipam server
+phpipam is an open-source web IP address management application (IPAM)
 
 **Homepage:** <https://phpipam.net>
 
@@ -36,9 +36,9 @@ Kubernetes: `^1.30.0-0`
 | phpipam.image.repository | string | `"phpipam/phpipam-www"` |  |
 | phpipam.image.tag | string | `"v1.7.3"` |  |
 | phpipam.ingress.annotations | object | `{}` |  |
-| phpipam.ingress.enabled | bool | `true` |  |
+| phpipam.ingress.enabled | bool | `false` |  |
 | phpipam.ingress.extraLabels | object | `{}` |  |
-| phpipam.ingress.hosts[0].host | string | `"phpipam.imdevops.cloud"` |  |
+| phpipam.ingress.hosts[0].host | string | `"phpipam.example.local"` |  |
 | phpipam.ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | phpipam.ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
 | phpipam.ingress.tls | list | `[]` |  |
