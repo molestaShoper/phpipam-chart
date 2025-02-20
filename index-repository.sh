@@ -2,4 +2,4 @@
 set -e
 
 helm package --destination packages charts/*
-helm repo index --url https://molestashoper.github.io/phpipam-chart/ .
+helm repo index . --url https://molestashoper.github.io/phpipam-chart/
