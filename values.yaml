@@ -17,15 +17,12 @@ phpipam:
     type: ClusterIP
     port: 80
   resources:
-    # resources are not mapped yet and therefor not working
     requests:
        cpu: 50m
        memory: 32Mi
     limits:
        cpu: 1000m
        memory: 2048Mi
-  # Add "key: value" widgets where the value is the intendated php script of the widget.
-  # Will be mounted in the widgets folder.
   widgets: {}
 
 cron:
@@ -58,7 +55,6 @@ database:
     size: 15Gi
     # storageClassName: ""
   resources:
-    # resources are not mapped yet and therefor not working
     requests:
        cpu: 50m
        memory: 128Mi
