@@ -5,5 +5,5 @@ name: phpipam
 home: https://phpipam.net
 sources: 
 - https://github.com/molestaShoper/phpipam-chart
-version: 1.0.7
+version: 1.0.8
 type: application
