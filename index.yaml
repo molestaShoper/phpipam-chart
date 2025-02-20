@@ -3,7 +3,18 @@ entries:
   phpipam:
   - apiVersion: v2
     appVersion: 1.7.3
-    created: "2025-02-20T16:34:10.533636+01:00"
+    created: "2025-02-20T16:40:10.118123+01:00"
+    description: phpipam is an open-source web IP address management application (IPAM)
+    digest: fea7b140a13daf1b755cf0fc550223cc0c2c129536d80537f852b5805184b4cf
+    home: https://phpipam.net
+    name: phpipam
+    type: application
+    urls:
+    - https://molestashoper.github.io/phpipam-chart/packages/phpipam-1.0.12.tgz
+    version: 1.0.12
+  - apiVersion: v2
+    appVersion: 1.7.3
+    created: "2025-02-20T16:40:10.117883+01:00"
     description: phpipam is an open-source web IP address management application (IPAM)
     digest: 547531d9325e7aa4f6dfb4a1dba3d83483f1ee1a7e37d1b50a33f4b7d79866c3
     home: https://phpipam.net
@@ -14,7 +25,7 @@ entries:
     version: 1.0.11
   - apiVersion: v2
     appVersion: 1.7.3
-    created: "2025-02-20T16:34:10.532945+01:00"
+    created: "2025-02-20T16:40:10.117617+01:00"
     description: phpipam is an open-source web IP address management application (IPAM)
     digest: 42df8da8ca3629cd8c5604e629dac99a2f3e308caff2af33f1177cb056ba6d7a
     home: https://phpipam.net
@@ -25,7 +36,7 @@ entries:
     version: 1.0.10
   - apiVersion: v2
     appVersion: 1.7.3
-    created: "2025-02-20T16:34:10.53446+01:00"
+    created: "2025-02-20T16:40:10.118802+01:00"
     description: phpipam is an open-source web IP address management application (IPAM)
     digest: 709843f70c1e41c395c2b6108d8c390e310b58651608222ccb36e6cb99bf12b0
     home: https://phpipam.net
@@ -36,7 +47,7 @@ entries:
     version: 1.0.9
   - apiVersion: v2
     appVersion: 1.7.3
-    created: "2025-02-20T16:34:10.534055+01:00"
+    created: "2025-02-20T16:40:10.118486+01:00"
     description: phpipam is an open-source web IP address management application (IPAM)
     digest: ab3ec2a2b2cb36bc5e4fdc791d947f611ff2740c18a5be50e0f5074fe2615d00
     home: https://phpipam.net
@@ -47,4 +58,4 @@ entries:
     urls:
     - https://molestashoper.github.io/phpipam-chart/packages/phpipam-1.0.8.tgz
     version: 1.0.8
-generated: "2025-02-20T16:34:10.532124+01:00"
+generated: "2025-02-20T16:40:10.116948+01:00"
