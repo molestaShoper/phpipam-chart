@@ -12,7 +12,7 @@ entries:
     - https://github.com/molestaShoper/phpipam-chart
     type: application
     urls:
-    - https://molestashoper.github.io/phpipam-chart/.cr-release-packages/phpipam-1.0.9.tgz
+    - https://molestashoper.github.io/phpipam-chart/packages/phpipam-1.0.9.tgz
     version: 1.0.9
   - apiVersion: v2
     appVersion: 1.7.3
