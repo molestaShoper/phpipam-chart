@@ -10,8 +10,8 @@ metadata:
     {{ toYaml .Values.ingress.annotations | nindent 4 }}
     {{ end }}
 spec:
+  {{- if .Values.ingress.tls }}
   tls:
-    {{- if .Values.ingress.tls }}
     {{- toYaml .Values.ingress.tls | nindent 4 }}
     {{- else }}
     - hosts:
@@ -19,7 +19,7 @@ spec:
         - {{ .host }}
         {{- end }}
       secretName: "{{ .Release.Name }}-{{ .Chart.Name }}-cert"
-    {{- end }}
+  {{- end }}
   ingressClassName: {{ .Values.ingress.className }}
   rules:
     {{- range .Values.ingress.hosts }}
