@@ -70,6 +70,6 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls: []
+  # tls: []
 
 nodeSelector: {}
