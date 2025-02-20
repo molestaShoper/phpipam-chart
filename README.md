@@ -38,7 +38,6 @@ phpipam is an open-source web IP address management application (IPAM)
 | database.service.type | string | `"ClusterIP"` |  |
 | global.database.name | string | `"phpipam"` |  |
 | global.database.user | string | `"phpipam"` |  |
-| global.domain | string | `"chart-example.local"` |  |
 | global.podAnnotations | object | `{}` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |

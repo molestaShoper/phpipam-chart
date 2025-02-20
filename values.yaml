@@ -1,7 +1,6 @@
 ---
 
 global:
-  domain: "chart-example.local"
   podAnnotations: {}
   database:
     name: "phpipam"
