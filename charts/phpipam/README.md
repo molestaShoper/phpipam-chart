@@ -6,10 +6,6 @@ phpipam is an open-source web IP address management application (IPAM)
 
 **Homepage:** <https://phpipam.net>
 
-## Source Code
-
-* <https://github.com/molestaShoper/phpipam-chart>
-
 ## Values
 
 | Key | Type | Default | Description |
