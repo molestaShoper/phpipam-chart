@@ -3,9 +3,9 @@ entries:
   phpipam:
   - apiVersion: v2
     appVersion: 1.7.3
-    created: "2025-02-20T10:15:21.645249379+01:00"
+    created: "2025-02-20T10:38:37.15222+01:00"
     description: phpipam is an open-source web IP address management application (IPAM)
-    digest: d6ee264d7eedc67ec382ffe52c808da34bf2d91dd9b4b710d05012e571aaf519
+    digest: dae7b5fdd64d2916a2a2e5046246caa72a82f9719c951b90f97e4fe79cb5e427
     home: https://phpipam.net
     name: phpipam
     sources:
@@ -14,4 +14,4 @@ entries:
     urls:
     - https://molestashoper.github.io/phpipam-chart/packages/phpipam-1.0.8.tgz
     version: 1.0.8
-generated: "2025-02-20T10:15:21.644580503+01:00"
+generated: "2025-02-20T10:38:37.151868+01:00"
