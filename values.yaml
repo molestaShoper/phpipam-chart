@@ -1,13 +1,10 @@
 ---
 
 global:
-  # -- domain of this phpipam instance
-  domain: "chart-example.local"
   podAnnotations: {}
   database:
     name: "phpipam"
     user: "phpipam"
-    password: "phpipam"
 
 phpipam:
   name: phpipam-web
