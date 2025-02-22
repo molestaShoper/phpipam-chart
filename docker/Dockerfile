@@ -2,7 +2,7 @@ FROM alpine:3.21.3 AS base
 
 # hadolint ignore=DL3018
 RUN apk upgrade --no-cache \
-    && apk add --no-cache alpine-conf ca-certificates tini tzdata php php-pdo_mysql php-pear php-json php-session php-gmp php-gd php-sockets php-gettext php-mbstring \
+    && apk add --no-cache ca-certificates tini tzdata php php-pdo_mysql php-pear php-json php-session php-gmp php-gd php-sockets php-gettext php-mbstring \
        php-ctype php-ldap php-curl php-snmp php-openssl php-simplexml php-pcntl php-iconv php-opcache php-posix php-dom \
        apache2 apache2-ssl php-apache2
 
