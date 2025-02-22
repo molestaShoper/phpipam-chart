@@ -24,7 +24,8 @@ jobs:
 
     - name: Package existing charts
       run: |
-        ./index-repository.sh
+        helm package --destination packages charts/*
+        helm repo index . --url https://molestashoper.github.io/phpipam-chart/
     
     - name: Commit files
       run: |

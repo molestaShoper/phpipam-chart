@@ -1,0 +1,28 @@
+services:
+  phpipam-www:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: phpipam-www
+    container_name: phpipam-www
+    ports:
+      - "80:80"
+    environment:
+      - TZ=Europe/Warsaw
+      - IPAM_DATABASE_HOST=phpipam-mysql
+      - IPAM_DATABASE_PASS=my_secret_phpipam_pass
+      - IPAM_DATABASE_WEBHOST=%
+      - IPAM_DISABLE_INSTALLER=1
+  phpipam-mysql:
+    image: percona/percona-server:8.0.40
+    container_name: phpipam-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=my_secret_root_pass
+      - MYSQL_DATABASE=phpipam
+      - MYSQL_USER=phpipam
+      - MYSQL_PASSWORD=my_secret_phpipam_pass
+    volumes:
+      - phpipam-db-data:/var/lib/mysql
+
+volumes:
+  phpipam-db-data:
