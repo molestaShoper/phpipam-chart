@@ -3,19 +3,41 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: phpipam-www
     image: phpipam-www
     container_name: phpipam-www
+    restart: unless-stopped
     ports:
       - "80:80"
     environment:
       - TZ=Europe/Warsaw
       - IPAM_DATABASE_HOST=phpipam-mysql
       - IPAM_DATABASE_PASS=my_secret_phpipam_pass
+      - IPAM_DATABASE_USER=phpipam
       - IPAM_DATABASE_WEBHOST=%
-      - IPAM_DISABLE_INSTALLER=1
+  phpipam-cron:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: phpipam-cron
+    image: phpipam-cron
+    container_name: phpipam-cron
+    environment:
+      - TZ=Europe/Warsaw
+      - IPAM_DATABASE_HOST=phpipam-mysql
+      - IPAM_DATABASE_PASS=my_secret_phpipam_pass
+      - IPAM_DATABASE_USER=phpipam
+      - SCAN_INTERVAL=1h
+    restart: unless-stopped
+    volumes:
+      - phpipam-ca-data:/usr/local/share/ca-certificates:ro
+    depends_on:
+      - phpipam-mysql
   phpipam-mysql:
     image: percona/percona-server:8.0.40
     container_name: phpipam-mysql
+    platform: linux/amd64
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=my_secret_root_pass
       - MYSQL_DATABASE=phpipam
@@ -26,3 +48,4 @@ services:
 
 volumes:
   phpipam-db-data:
+  phpipam-ca-data:

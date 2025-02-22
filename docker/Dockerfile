@@ -2,7 +2,7 @@ FROM alpine:3.21.3 AS base
 
 # hadolint ignore=DL3018
 RUN apk upgrade --no-cache \
-    && apk add --no-cache tzdata php php-pdo_mysql php-pear php-json php-session php-gmp php-gd php-sockets php-gettext php-mbstring \
+    && apk add --no-cache ca-certificates tini tzdata php php-pdo_mysql php-pear php-json php-session php-gmp php-gd php-sockets php-gettext php-mbstring \
        php-ctype php-ldap php-curl php-snmp php-openssl php-simplexml php-pcntl php-iconv php-opcache php-posix php-dom \
        apache2 apache2-ssl php-apache2
 
@@ -24,9 +24,15 @@ RUN rm -rf htdocs && \
 
 FROM phpipam-pkg AS phpipam-www
 
-WORKDIR /var/www/localhost
+WORKDIR /var/www/localhost/htdocs
 
 RUN mv config.docker.php config.php && chmod 666 config.php && \
     rm -rf /var/www/localhost/phpipam-"${APP_VERSION}".zip
 
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+
+FROM phpipam-www AS phpipam-cron
+
+COPY bin/cron.sh /usr/local/bin/cron.sh
+
+CMD ["/usr/local/bin/cron.sh"]
